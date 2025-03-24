@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Header -->
+  <%- include('layouts/head') -%>
+  <body>
+    <!-- Nav Bar -->
+    <%- include('layouts/nav') -%>
+
+    <header
+      class="masthead"
+      style="background-image: url('/img/banner/signup_banner.jpg')"
+    >
+      <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+          <div class="col-md-10 col-lg-8 col-xl-7">
+            <div class="site-heading">
+              <h1>Sign Up</h1>
+              <span class="subheading">Drive Test Booking Kiosk</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+      <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+          <div class="col-md-10 col-lg-8 col-xl-7">
+            <% if (typeof error !== 'undefined' && error) { %>
+            <div class="alert alert-danger"><%= error %></div>
+            <% } %>
+
+            <div class="card shadow mb-4">
+              <div class="card-header bg-primary text-white h5">
+                <i class="bi bi-person-plus-fill me-2"></i>Create your account
+              </div>
+              <div class="card-body">
+                <form action="/signup" method="POST">
+                  <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="username"
+                      name="username"
+                      required
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input
+                      type="password"
+                      class="form-control"
+                      id="password"
+                      name="password"
+                      required
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label for="confirmPassword" class="form-label"
+                      >Confirm Password</label
+                    >
+                    <input
+                      type="password"
+                      class="form-control"
+                      id="confirmPassword"
+                      name="confirmPassword"
+                      required
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label for="userType" class="form-label">User Type</label>
+                    <select
+                      class="form-select"
+                      id="userType"
+                      name="userType"
+                      required
+                    >
+                      <option value="" selected disabled>
+                        Select user type
+                      </option>
+                      <option value="Driver">Driver</option>
+                      <option value="Examiner">Examiner</option>
+                      <option value="Admin">Admin</option>
+                    </select>
+                  </div>
+                  <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-primary">
+                      <i class="bi bi-person-plus me-2"></i>Sign Up
+                    </button>
+                  </div>
+                </form>
+              </div>
+              <div class="card-footer text-center">
+                <p class="mb-0">
+                  Already have an account?
+                  <a href="/login" class="text-decoration-none">Login here</a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <%- include('layouts/footer') -%>
+    <!-- Scripts -->
+    <%- include('layouts/scripts') -%>
+    <script>
+      // Client-side validation
+      document.addEventListener("DOMContentLoaded", function () {
+        const form = document.querySelector("form");
+        form.addEventListener("submit", function (event) {
+          const password = document.getElementById("password").value;
+          const confirmPassword =
+            document.getElementById("confirmPassword").value;
+
+          if (password !== confirmPassword) {
+            event.preventDefault();
+            alert("Passwords do not match");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

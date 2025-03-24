@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Header -->
+  <%- include('layouts/head') -%>
+  <body>
+    <!-- Nav Bar -->
+    <%- include('layouts/nav') -%>
+
+    <header
+      class="masthead"
+      style="background-image: url('/img/banner/login_banner.jpg')"
+    >
+      <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+          <div class="col-md-10 col-lg-8 col-xl-7">
+            <div class="site-heading">
+              <h1>Login</h1>
+              <span class="subheading">Drive Test Booking Kiosk</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+      <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+          <div class="col-md-10 col-lg-8 col-xl-7">
+            <% if (typeof error !== 'undefined' && error) { %>
+            <div class="alert alert-danger"><%= error %></div>
+            <% } %>
+
+            <div class="card shadow mb-4">
+              <div class="card-header bg-primary text-white h5">
+                <i class="bi bi-person-fill me-2"></i>Login to your account
+              </div>
+              <div class="card-body">
+                <form action="/login" method="POST">
+                  <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="username"
+                      name="username"
+                      required
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input
+                      type="password"
+                      class="form-control"
+                      id="password"
+                      name="password"
+                      required
+                    />
+                  </div>
+                  <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-primary">
+                      <i class="bi bi-box-arrow-in-right me-2"></i>Login
+                    </button>
+                  </div>
+                </form>
+              </div>
+              <div class="card-footer text-center">
+                <p class="mb-0">
+                  Don't have an account?
+                  <a href="/signup" class="text-decoration-none"
+                    >Sign up here</a
+                  >
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <%- include('layouts/footer') -%>
+    <!-- Scripts -->
+    <%- include('layouts/scripts') -%>
+  </body>
+</html>
