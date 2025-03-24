@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Header -->
+  <%- include('layouts/head') -%>
+  <body>
+    <!-- Nav Bar -->
+    <%- include('layouts/nav') -%>
+
+    <header
+      class="masthead"
+      style="background-image: url('/img/banner/g2_test_banner.jpg')"
+    >
+      <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+          <div class="col-md-10 col-lg-8 col-xl-7">
+            <div class="site-heading">
+              <h1>G2 Test Registration</h1>
+              <span class="subheading">Drive Test Booking Kiosk</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+      <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+          <div class="col-md-10 col-lg-8 col-xl-7">
+            <% if (typeof error !== 'undefined' && error) { %>
+            <div class="alert alert-danger"><%= error %></div>
+            <% } %>
+            <form
+              class="needs-validation"
+              action="/G2-Test/Store"
+              method="POST"
+            >
+              <!-- Personal Information Card -->
+              <div class="card shadow mb-4">
+                <div class="card-header bg-primary text-white h5">
+                  <i class="bi bi-person-fill me-2"></i>Personal Information
+                </div>
+                <div class="card-body">
+                  <div class="row g-3">
+                    <div class="col-md-6">
+                      <label class="form-label">First Name</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        name="fName"
+                        required
+                      />
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">Last Name</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        name="lName"
+                        required
+                      />
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">License Number</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        name="licenseNumber"
+                        pattern="[A-Za-z0-9]{8}"
+                        title="8 alphanumeric characters"
+                        required
+                      />
+                    </div>
+                    <div class="col-md-3">
+                      <label class="form-label">Age</label>
+                      <input
+                        type="number"
+                        class="form-control"
+                        name="age"
+                        min="16"
+                        required
+                      />
+                    </div>
+                    <div class="col-md-3">
+                      <label class="form-label">Date of Birth</label>
+                      <input
+                        type="date"
+                        class="form-control"
+                        name="dob"
+                        required
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Car Information Card -->
+              <div class="card shadow mb-4">
+                <div class="card-header bg-primary text-white h5">
+                  <i class="bi bi-car-front-fill me-2"></i>Car Information
+                </div>
+                <div class="card-body">
+                  <div class="row g-3">
+                    <div class="col-md-6">
+                      <label class="form-label">Make</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        name="carDetails.make"
+                        required
+                      />
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">Model</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        name="carDetails.model"
+                        required
+                      />
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">Year</label>
+                      <input
+                        type="number"
+                        class="form-control"
+                        name="carDetails.year"
+                        min="1900"
+                        required
+                      />
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">Plate Number</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        name="carDetails.plateNumber"
+                        required
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <button type="submit" class="btn btn-primary btn-lg px-5">
+                  <i class="bi bi-send-fill me-2"></i>Submit Application
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <%- include('layouts/footer') -%>
+    <!-- Scripts -->
+    <%- include('layouts/scripts') -%>
+    <script src="/js/G2.js"></script>
+  </body>
+</html>
