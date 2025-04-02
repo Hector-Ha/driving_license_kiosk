@@ -42,12 +42,19 @@ app.use(
     secret: "DriveTestSecretKey",
     resave: false,
     saveUninitialized: true,
+    cookie: { maxAge: 60000 },
   })
 );
 app.use(flash());
 
 // Use the setLocals middleware to make user data available to all views
 app.use(authMiddleware.setLocals);
+
+app.use((req, res, next) => {
+  console.log("Flash error:", req.flash("error"));
+  console.log("Flash success:", req.flash("success"));
+  next();
+});
 
 // Database Configuration
 const MONGODB_URI =

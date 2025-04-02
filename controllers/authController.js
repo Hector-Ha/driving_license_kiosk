@@ -2,8 +2,18 @@ const User = require("../models/user");
 
 // Show login form
 exports.getLogin = (req, res) => {
+  // Get flash messages
+  const errorMsg = req.flash("error")[0] || null;
+  const successMsg = req.flash("success")[0] || null;
+
+  // Log them after retrieval but before rendering
+  console.log("Login page - Flash error:", errorMsg);
+  console.log("Login page - Flash success:", successMsg);
+
+  // Render with retrieved messages
   res.render("login", {
-    error: req.flash("error"),
+    error: errorMsg,
+    success: successMsg,
   });
 };
 
@@ -22,6 +32,7 @@ exports.postLogin = async (req, res) => {
     const user = await User.findOne({ username });
     if (!user) {
       req.flash("error", "Invalid username or password");
+      console.log("Just set flash error:", req.flash("error"));
       return res.redirect("/login");
     }
 

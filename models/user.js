@@ -22,6 +22,11 @@ const userSchema = new Schema({
     year: { type: Number, default: 0 },
     plateNumber: { type: String, default: "default" },
   },
+  appointmentId: {
+    type: Schema.Types.ObjectId,
+    ref: "appointment",
+    default: null,
+  },
 });
 
 // Virtual for displaying the license number

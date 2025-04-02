@@ -40,7 +40,17 @@ module.exports = {
     res.locals.isAuthenticated = !!req.session.userId;
     res.locals.userType = req.session.userType || null;
     res.locals.currentUser = req.session.userId || null;
-    res.locals.flashMessages = req.flash();
+
+    // Store flash messages directly
+    res.locals.error = req.flash("error")[0] || null;
+    res.locals.success = req.flash("success")[0] || null;
+
+    // Also keep the full flashMessages object (optional)
+    res.locals.flashMessages = {
+      error: res.locals.error,
+      success: res.locals.success,
+    };
+
     next();
   },
 };
